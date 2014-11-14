@@ -29,6 +29,7 @@ class AbstractChosen
     @inherit_select_classes = @options.inherit_select_classes || false
     @display_selected_options = if @options.display_selected_options? then @options.display_selected_options else true
     @display_disabled_options = if @options.display_disabled_options? then @options.display_disabled_options else true
+    @keep_search_on_update = @options.keep_search_on_update || false
 
   set_default_text: ->
     if @form_field.getAttribute("data-placeholder")
@@ -102,7 +103,7 @@ class AbstractChosen
     this.outerHTML(group_el)
 
   results_update_field: ->
-    this.set_default_text()
+    this.set_default_text() if not @keep_search_on_update
     this.results_reset_cleanup() if not @is_multiple
     this.result_clear_highlight()
     this.results_build()
