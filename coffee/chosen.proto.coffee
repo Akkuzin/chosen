@@ -323,6 +323,8 @@ class @Chosen extends AbstractChosen
     deselect_trigger.remove() if(deselect_trigger)
 
   result_select: (evt) ->
+    evt.preventDefault();
+    evt.stopPropagation();
     if @result_highlight
       high = @result_highlight
       this.result_clear_highlight()
